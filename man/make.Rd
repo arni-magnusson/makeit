@@ -27,7 +27,7 @@ modified.}
 \item{recon}{whether to return \code{TRUE} or \code{FALSE}, without actually
 running the R script.}
 
-\item{\dots}{passed to \code{engine}.}
+\item{\dots}{passed to \code{source}.}
 }
 \value{
 \code{TRUE} or \code{FALSE}, indicating whether the script was run.

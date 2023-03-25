@@ -14,7 +14,7 @@
 #' @param force whether to run the R script unconditionally.
 #' @param recon whether to return \code{TRUE} or \code{FALSE}, without actually
 #'        running the R script.
-#' @param \dots passed to \code{engine}.
+#' @param \dots passed to \code{source}.
 #'
 #' @return \code{TRUE} or \code{FALSE}, indicating whether the script was run.
 #'
