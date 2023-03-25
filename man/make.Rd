@@ -59,13 +59,6 @@ Stallman, R. M. \emph{et al.} An introduction to makefiles. Chapter 2 in the
 manual}}.
 }
 \seealso{
-\code{\link{source}} runs any R script, \code{\link{source.taf}} is more
-convenient for running a TAF script, and \code{\link{source.all}} runs all
-TAF scripts.
-
-\code{\link{make}}, \code{\link{make.taf}}, and \code{\link{make.all}} are
-similar to the \code{source} functions, except they avoid repeating tasks
-that have already been run.
-
-\code{\link{TAF-package}} gives an overview of the package.
+\code{\link{file.exists}} and \code{\link{file.mtime}} are the underlying
+functions used to check if files are missing or have changed.
 }
