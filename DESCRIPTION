@@ -1,0 +1,16 @@
+Package: make
+Version: 1.0.0
+Date: 2023-03-25
+Title: Run R Scripts If Needed
+Authors@R: c(person("Arni", "Magnusson", role=c("aut","cre"), email="thisisarni@gmail.com"))
+Description: A simple make-like utility to run R scripts if needed, based on
+  last modified time. Implemented in base R with no additional software
+  requirements, organizational overhead or structural requirements. The make()
+  function does the same thing as makefiles do: creates 'target' using 'prereq'
+  files and a 'recipe'. In short, if any 'target' is either missing or is older
+  than any 'prereq', then the R script is run.
+License: GPL-3
+URL: https://github.com/arni-magnusson/make
+Encoding: UTF-8
+RoxygenNote: 7.2.3
+Roxygen: list(old_usage=TRUE)
