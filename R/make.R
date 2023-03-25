@@ -34,6 +34,8 @@
 #' \code{\link{file.exists}} and \code{\link{file.mtime}} are the underlying
 #' functions used to check if files are missing or have changed.
 #'
+#' \code{\link{source}} is the underlying function to run a script.
+#'
 #' @examples
 #' \dontrun{
 #' make("model.R", "data/input.dat", "model/results.dat")
