@@ -14,6 +14,7 @@
 #' @param force whether to run the R script unconditionally.
 #' @param recon whether to return \code{TRUE} or \code{FALSE}, without actually
 #'        running the R script.
+#' @param silent whether to suppress messages.
 #' @param \dots passed to \code{source}.
 #'
 #' @return \code{TRUE} or \code{FALSE}, indicating whether the script was run.
@@ -52,7 +53,7 @@
 #' @export
 
 make <- function(recipe, prereq, target, include=TRUE, debug=FALSE, force=FALSE,
-                 recon=FALSE, ...)
+                 recon=FALSE, silent=FALSE, ...)
 {
   if(include)
     prereq <- union(prereq, recipe)
@@ -63,15 +64,20 @@ make <- function(recipe, prereq, target, include=TRUE, debug=FALSE, force=FALSE,
                      Modified=file.mtime(c(target,prereq))))
   if(!all(file.exists(prereq)))
     stop("missing prerequisite file '", prereq[!file.exists(prereq)][1], "'")
-  if(force || !all(file.exists(target)) ||
+  if(force ||
+     !all(file.exists(target)) ||
      min(file.mtime(target)) < max(file.mtime(prereq)))
   {
+    if(!silent)
+      message("Running ", recipe)
     if(!recon)
       source(recipe, ...)
     out <- TRUE
   }
   else
   {
+    if(!silent)
+      message("Nothing to be done")
     out <- FALSE
   }
   invisible(out)

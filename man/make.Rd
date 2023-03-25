@@ -5,7 +5,7 @@
 \title{Run R Script If Needed}
 \usage{
 make(recipe, prereq, target, include = TRUE, debug = FALSE,
-  force = FALSE, recon = FALSE, ...)
+  force = FALSE, recon = FALSE, silent = FALSE, ...)
 }
 \arguments{
 \item{recipe}{script filename.}
@@ -26,6 +26,8 @@ modified.}
 
 \item{recon}{whether to return \code{TRUE} or \code{FALSE}, without actually
 running the R script.}
+
+\item{silent}{whether to suppress messages.}
 
 \item{\dots}{passed to \code{source}.}
 }
