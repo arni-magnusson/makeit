@@ -9,7 +9,6 @@
 #'        names can also be used.
 #' @param include whether to automatically include the script itself as a
 #'        prerequisite file.
-#' @param engine function to source the script.
 #' @param debug whether to show a diagnostic table of files and time last
 #'        modified.
 #' @param force whether to run the R script unconditionally.
@@ -45,8 +44,8 @@
 #'
 #' @export
 
-make <- function(recipe, prereq, target, include=TRUE, engine=source,
-                 debug=FALSE, force=FALSE, recon=FALSE, ...)
+make <- function(recipe, prereq, target, include=TRUE, debug=FALSE, force=FALSE,
+                 recon=FALSE, ...)
 {
   if(include)
     prereq <- union(prereq, recipe)
@@ -61,7 +60,7 @@ make <- function(recipe, prereq, target, include=TRUE, engine=source,
      min(file.mtime(target)) < max(file.mtime(prereq)))
   {
     if(!recon)
-      engine(recipe, ...)
+      source(recipe, ...)
     out <- TRUE
   }
   else
