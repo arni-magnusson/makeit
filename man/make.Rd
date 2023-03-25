@@ -17,7 +17,8 @@ example, data files and/or scripts.}
 names can also be used.}
 
 \item{include}{whether to automatically include the script itself as a
-prerequisite file.}
+prerequisite file. This means that if the script file has been
+modified, it should be run.}
 
 \item{debug}{whether to show a diagnostic table of files and time last
 modified.}
@@ -46,10 +47,10 @@ then the script is run.
 }
 \examples{
 \dontrun{
+# Here, script.R uses input.dat, creating output.dat
 make("script.R", "input.dat", "output.dat")
-
-# Enclose in parentheses to print TRUE/FALSE
-(make("script.R", "input.dat", "output.dat"))
+make("script.R", "input.dat", "output.dat", silent=TRUE)
+make("script.R", "input.dat", "output.dat", debug=TRUE)
 
 # Sequential scripts
 make("01_analysis.R", "data.dat", "results.dat")
