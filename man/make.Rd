@@ -44,10 +44,15 @@ then the script is run.
 }
 \examples{
 \dontrun{
-make("model.R", "data/input.dat", "model/results.dat")
+make("script.R", "input.dat", "output.dat")
 
-# Enclose in parentheses to print TRUE/FALSE output
-(make("model.R", "data/input.dat", "model/results.dat"))
+# Enclose in parentheses to print TRUE/FALSE
+(make("script.R", "input.dat", "output.dat"))
+
+# Sequential scripts
+make("01_analysis.R", "data.dat", "results.dat")
+make("02_plots.R", "results.dat", "plots")
+make("03_tables.R", "results.dat", "tables")
 }
 
 }
