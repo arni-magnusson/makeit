@@ -4,7 +4,7 @@
 \alias{make}
 \title{Run R Script if Needed}
 \usage{
-make(recipe, prereq, target, include = TRUE, debug = FALSE,
+make(recipe, prereq, target, include = TRUE, details = FALSE,
   force = FALSE, recon = FALSE, silent = FALSE, ...)
 }
 \arguments{
@@ -20,7 +20,7 @@ names can also be used.}
 prerequisite file. This means that if the script file has been
 modified, it should be run.}
 
-\item{debug}{whether to show a diagnostic table of files and time last
+\item{details}{whether to show a diagnostic table of files and time last
 modified.}
 
 \item{force}{whether to run the R script unconditionally.}
@@ -53,7 +53,7 @@ make("analysis.R", "input.dat", "output.dat")  # Nothing to be done
 
 # Suppress messages, show last modified
 make("analysis.R", "input.dat", "output.dat", silent=TRUE)
-make("analysis.R", "input.dat", "output.dat", debug=TRUE)
+make("analysis.R", "input.dat", "output.dat", details=TRUE)
 
 # Sequential scripts
 make("01_model.R", "data.dat", "results.dat")
