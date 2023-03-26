@@ -40,13 +40,16 @@
 #'
 #' @examples
 #' \dontrun{
-#' # Here, script.R uses input.dat, creating output.dat
-#' make("script.R", "input.dat", "output.dat")
-#' make("script.R", "input.dat", "output.dat", silent=TRUE)
-#' make("script.R", "input.dat", "output.dat", debug=TRUE)
+#' # Here, analysis.R uses input.dat, creating output.dat
+#' make("analysis.R", "input.dat", "output.dat")  # Running analysis.R
+#' make("analysis.R", "input.dat", "output.dat")  # Nothing to be done
+#'
+#' # Suppress messages, show last modified
+#' make("analysis.R", "input.dat", "output.dat", silent=TRUE)
+#' make("analysis.R", "input.dat", "output.dat", debug=TRUE)
 #'
 #' # Sequential scripts
-#' make("01_analysis.R", "data.dat", "results.dat")
+#' make("01_model.R", "data.dat", "results.dat")
 #' make("02_plots.R", "results.dat", "plots")
 #' make("03_tables.R", "results.dat", "tables")
 #' }
