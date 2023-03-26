@@ -1,7 +1,7 @@
 Package: make
 Version: 1.0.0
 Date: 2023-03-25
-Title: Run R Scripts If Needed
+Title: Run R Scripts if Needed
 Authors@R: c(person("Arni", "Magnusson", role=c("aut","cre"), email="thisisarni@gmail.com"))
 Description: A simple make-like utility to run R scripts if needed, based on
   last modified time. Implemented in base R with no additional software

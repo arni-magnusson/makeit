@@ -2,7 +2,7 @@
 % Please edit documentation in R/make.R
 \name{make}
 \alias{make}
-\title{Run R Script If Needed}
+\title{Run R Script if Needed}
 \usage{
 make(recipe, prereq, target, include = TRUE, debug = FALSE,
   force = FALSE, recon = FALSE, silent = FALSE, ...)

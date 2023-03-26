@@ -1,4 +1,4 @@
-#' Run R Script If Needed
+#' Run R Script if Needed
 #'
 #' Run an R script if underlying files have changed, otherwise do nothing.
 #'
