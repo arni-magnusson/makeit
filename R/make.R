@@ -29,8 +29,7 @@
 #'
 #' @references
 #' Stallman, R. M. \emph{et al.} An introduction to makefiles. Chapter 2 in the
-#' \emph{\href{https://www.gnu.org/software/make/manual/make.pdf}{GNU Make
-#' manual}}.
+#' \emph{\href{https://www.gnu.org/software/make/manual/}{GNU Make manual}}.
 #'
 #' @seealso
 #' \code{\link{file.exists}} and \code{\link{file.mtime}} are the underlying
