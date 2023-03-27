@@ -53,8 +53,8 @@
 #' make("03_tables.R", "results.dat", c("tables/A.csv", "tables/B.csv"))
 #'
 #' # Copy these to working directories and explore
-#' system.file("examples/analysis", package="makeR")
-#' system.file("examples/sequential", package="makeR")
+#' system.file("examples/analysis", package="makeit")
+#' system.file("examples/sequential", package="makeit")
 #' }
 #'
 #' @export
