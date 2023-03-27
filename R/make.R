@@ -38,24 +38,40 @@
 #' \code{\link{source}} is the underlying function to run a script.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
+#' # Copy examples 'analysis' and 'sequential' to temporary directory
+#' exdir <- tempdir()
+#' file.copy(system.file("examples/analysis", package="makeit"),
+#'           exdir, recursive=TRUE)
+#' file.copy(system.file("examples/sequential", package="makeit"),
+#'           exdir, recursive=TRUE)
+#' owd <- getwd()
+#'
 #' # Here, analysis.R uses input.dat, creating output.dat
+#' setwd(file.path(exdir, "analysis"))
+#' dir()
 #' make("analysis.R", "input.dat", "output.dat")  # Running analysis.R
+#' dir()
 #' make("analysis.R", "input.dat", "output.dat")  # Nothing to be done
 #'
-#' # Suppress messages, show last modified
+#' # Suppress message, show last modified
 #' make("analysis.R", "input.dat", "output.dat", silent=TRUE)
 #' make("analysis.R", "input.dat", "output.dat", details=TRUE)
 #'
 #' # Sequential scripts
+#' setwd(file.path(exdir, "sequential"))
+#' print.simple.list(dir(recursive=TRUE))
 #' make("01_model.R", "data.dat", "results.dat")
 #' make("02_plots.R", "results.dat", c("plots/A.png", "plots/B.png"))
 #' make("03_tables.R", "results.dat", c("tables/A.csv", "tables/B.csv"))
+#' print.simple.list(dir(recursive=TRUE))
 #'
-#' # Copy these to working directories and explore
-#' system.file("examples/analysis", package="makeit")
-#' system.file("examples/sequential", package="makeit")
+#' # Clean up
+#' unlink(file.path(exdir, c("analysis", "sequential")), recursive=TRUE)
+#' setwd(owd)
 #' }
+#'
+#' @aliases makeit
 #'
 #' @export
 
