@@ -1,3 +1,7 @@
+[![CRAN Status](https://r-pkg.org/badges/version/makeit)](https://cran.r-project.org/package=makeit)
+[![CRAN Monthly](https://cranlogs.r-pkg.org/badges/makeit)](https://cran.r-project.org/package=makeit)
+[![CRAN Total](https://cranlogs.r-pkg.org/badges/grand-total/makeit)](https://cran.r-project.org/package=makeit)
+
 makeit
 =====
 
