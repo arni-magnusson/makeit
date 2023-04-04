@@ -11,12 +11,11 @@ needed, based on last modified time.
 Installation
 ------------
 
-The package can be installed from GitHub using the `install_github` command:
+The package can be installed from CRAN using the `install.packages` command:
 
-```R
-library(remotes)
-install_github("arni-magnusson/makeit")
-```
+``R
+install.packages("makeit")
+``
 
 Usage
 -----
@@ -36,3 +35,10 @@ The makeit package is developed openly on
 
 Feel free to open an [issue](https://github.com/arni-magnusson/makeit/issues)
 there if you encounter problems or have suggestions for future versions.
+
+The current development version can be installed using:
+
+```R
+library(remotes)
+install_github("arni-magnusson/makeit")
+```
