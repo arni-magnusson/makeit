@@ -13,9 +13,9 @@ Installation
 
 The package can be installed from CRAN using the `install.packages` command:
 
-``R
+```R
 install.packages("makeit")
-``
+```
 
 Usage
 -----
