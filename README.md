@@ -5,13 +5,21 @@
 makeit
 =====
 
-The makeit package provides a simple make-like utility to run R scripts if
-needed, based on last modified time.
+A simple make-like utility to run R scripts if needed, based on last modified
+time.
+
+Implemented in base R with no additional software requirements, organizational
+overhead, or structural requirements.
+
+In short: run an R script if underlying files have changed, otherwise do
+nothing.
 
 Installation
 ------------
 
-The package can be installed from CRAN using the `install.packages` command:
+The package can be installed from
+[CRAN](https://cran.r-project.org/package=makeit) using the `install.packages`
+command:
 
 ```R
 install.packages("makeit")
@@ -30,7 +38,7 @@ library(makeit)
 Development
 -----------
 
-The makeit package is developed openly on
+The package is developed openly on
 [GitHub](https://github.com/arni-magnusson/makeit).
 
 Feel free to open an [issue](https://github.com/arni-magnusson/makeit/issues)
