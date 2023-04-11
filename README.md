@@ -5,8 +5,7 @@
 makeit
 =====
 
-A simple make-like utility to run R scripts if needed, based on last modified
-time.
+Automation tool to run R scripts if needed, based on last modified time.
 
 Implemented in base R with no additional software requirements, organizational
 overhead, or structural requirements.
