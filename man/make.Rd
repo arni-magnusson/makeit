@@ -78,6 +78,9 @@ print.simple.list(dir(recursive=TRUE))
 # Clean up
 unlink(file.path(exdir, c("analysis", "sequential")), recursive=TRUE)
 setwd(owd)
+
+# Online annotated examples
+https://github.com/arni-magnusson/makeit/tree/main/inst/examples#readme
 }
 
 }
