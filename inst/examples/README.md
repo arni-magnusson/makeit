@@ -125,28 +125,30 @@ between the `makeit` package and the `targets` package.
 
 - The `makeit` package is script-based, where each step passes the results to
   the next step as output files. The user organizes their workflow by writing
-  scripts that produce files. The scripts may include functions, but that is not
-  a requirement.
+  scripts that produce files.
 
   The `makeit` package relies only on base R and takes a very short time to
   learn, and can be used to run any existing workflows, as long as they are
-  based on scripts with input and output files. The package consists of a single
-  function that does one thing: Run an R script if underlying files have
-  changed, otherwise do nothing.
+  based on scripts with input and output files. The scripts may include
+  functions, but that is not a requirement.
+
+  The package consists of a single function that does one thing: run an R script
+  if underlying files have changed, otherwise do nothing.
 
 - The `targets` package is function-based, where each step passes the results to
   the next step as objects in memory. The user organizes their workflow by
-  writing functions that produce objects. The functions may produce files, but
-  that is not a requirement.
+  writing functions that produce objects.
 
   The `targets` package relies on many underlying packages, takes some time to
   learn, and some work may be required to realign existing workflows into
-  functions. The package consists of many useful tools to support workflow
-  design and management.
+  functions. The functions may produce files, but that is not a requirement.
+
+  The package consists of many useful tools to support workflow design and
+  management.
 
 To summarize:
 
-Package   | Paradigm  | State  | Dependencies | Time to learn | Existing workflow      | Features
+Package   | Paradigm  | State  | Dependencies | Time to learn | Run existing workflow  | Features
 --------- | --------- | ------ | ------------ | ------------- | ---------------------- | --------
-`makeit`  | Scripts   | Files  | None         | Very short    | Must be file-based     | None
+`makeit`  | Scripts   | Files  | None         | Very short    | Must be file-based     | One
 `targets` | Functions | Memory | Many         | Some          | Must be function-based | Many
