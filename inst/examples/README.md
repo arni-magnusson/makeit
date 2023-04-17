@@ -144,9 +144,9 @@ between the `makeit` package and the `targets` package.
   functions. The package consists of many useful tools to support workflow
   design and management.
 
-### To summarize
+To summarize:
 
-Package   | Paradigm  | State         | Dependencies | Time to learn | Existing workflow      | Features
---------- | --------- | ------------- | ------------ | ------------- | ---------------------- | --------
-`makeit`  | Scripts   | Files         | None         | Very short    | Must be file-based     | None
-`targets` | Functions | Memory memory | Many         | Some          | Must be function-based | Many
+Package   | Paradigm  | State  | Dependencies | Time to learn | Existing workflow      | Features
+--------- | --------- | ------ | ------------ | ------------- | ---------------------- | --------
+`makeit`  | Scripts   | Files  | None         | Very short    | Must be file-based     | None
+`targets` | Functions | Memory | Many         | Some          | Must be function-based | Many
