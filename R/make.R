@@ -4,7 +4,7 @@
 #'
 #' @param recipe script filename.
 #' @param prereq one or more underlying files, required by the script. For
-#'        example, data files and/or scripts.
+#'        example, data files, scripts, or \code{NULL}.
 #' @param target one or more output files, produced by the script. Directory
 #'        names can also be used.
 #' @param include whether to automatically include the script itself as a

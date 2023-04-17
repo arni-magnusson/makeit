@@ -12,7 +12,7 @@ make(recipe, prereq, target, include = TRUE, details = FALSE,
 \item{recipe}{script filename.}
 
 \item{prereq}{one or more underlying files, required by the script. For
-example, data files and/or scripts.}
+example, data files, scripts, or \code{NULL}.}
 
 \item{target}{one or more output files, produced by the script. Directory
 names can also be used.}
