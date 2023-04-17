@@ -98,7 +98,7 @@ second_target.R
 ```
 
 DAG example based on the example from the `targets` [user
-manual][https://books.ropensci.org/targets/targets.html#dependencies].
+manual](https://books.ropensci.org/targets/targets.html#dependencies).
 
 The `second_target` depends on `first_target` and `outer_function`, which in
 turn depends on `inner_function` and `global_object`.
@@ -120,30 +120,33 @@ For convenience, a `_make.R` file is provided, containing these `make()` calls.
 
 ## Comparison with other make-like packages
 
-Package   | Paradigm  | State         | Dependencies | Time to learn | Existing workflow | Features
---------- | --------- | ------------- | ------------ | ------------- | ----------------- | --------
-`makeit`  | Scripts   | Files         | None         | Very short    | Yes               | None
-`targets` | Functions | Memory memory | Many         | Some          | Must be functions | Many
+The `four_minutes` and `dag_targets` examples provide an interesting comparison
+between the `makeit` package and the `targets` package.
 
 - The `makeit` package is script-based, where each step passes the results to
   the next step as output files. The user organizes their workflow by writing
   scripts that produce files. The scripts may include functions, but that is not
   a requirement.
-  
+
   The `makeit` package relies only on base R and takes a very short time to
-  learn, and can be used to run any existing workflows, often without
-  modifications. The package consists of a single function that does one thing:
-  Run an R script if underlying files have changed, otherwise do nothing.
+  learn, and can be used to run any existing workflows, as long as they are
+  based on scripts with input and output files. The package consists of a single
+  function that does one thing: Run an R script if underlying files have
+  changed, otherwise do nothing.
 
 - The `targets` package is function-based, where each step passes the results to
   the next step as objects in memory. The user organizes their workflow by
   writing functions that produce objects. The functions may produce files, but
   that is not a requirement.
-  
+
   The `targets` package relies on many underlying packages, takes some time to
   learn, and some work may be required to realign existing workflows into
   functions. The package consists of many useful tools to support workflow
   design and management.
 
-The `four_minutes` and `dag_targets` examples provide an interesting comparison
-between the `makeit` package and the `targets` package.
+### To summarize
+
+Package   | Paradigm  | State         | Dependencies | Time to learn | Existing workflow      | Features
+--------- | --------- | ------------- | ------------ | ------------- | ---------------------- | --------
+`makeit`  | Scripts   | Files         | None         | Very short    | Must be file-based     | None
+`targets` | Functions | Memory memory | Many         | Some          | Must be function-based | Many
