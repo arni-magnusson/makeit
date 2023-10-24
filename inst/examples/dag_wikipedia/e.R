@@ -1,5 +1,3 @@
-a <- scan("out/a.dat", quiet=TRUE)
-c <- scan("out/c.dat", quiet=TRUE)
 d <- scan("out/d.dat", quiet=TRUE)
 cat("Writing out/e.dat\n")
-write(a + c + d + utf8ToInt("e"), "out/e.dat")
+write(d + utf8ToInt("e"), "out/e.dat")
