@@ -55,9 +55,19 @@ Similar to the 'sequential' example above, but based on the
 [four-minutes](https://github.com/wlandau/targets-four-minutes) tutorial that
 comes with `targets` package.
 
+Run example:
+
+```{r}
+make("get_data.R", "data_raw.csv", "data/data.csv")
+make("fit_model.R", "data/data.csv", "output/coefs.dat")
+make("plot_model.R", c("data/data.csv", "output/coefs.dat"), "output/plot.pdf")
+```
+
+For convenience, a `_make.R` file is provided, containing these `make()` calls.
+
 ## 4. dag_wikipedia
 
-<img src="dag_wikipedia.png" alt="diagram" width="180">
+<img src="dag_wikipedia.png" alt="diagram" width="120">
 
 ```
 a.R
@@ -68,7 +78,8 @@ e.R
 ```
 
 DAG example based on the diagram provided in the Wikipedia article on [Directed
-acyclic graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph).
+acyclic
+graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph#Mathematical_properties).
 
 Each script produces a corresponding output file: `a.R` produces `out/a.dat`,
 `b.R` produces `out/b.dat`, etc.
@@ -79,8 +90,8 @@ Run example:
 make("a.R", prereq=NULL, target="out/a.dat")
 make("b.R", prereq="out/a.dat", target="out/b.dat")
 make("c.R", prereq="out/a.dat", target="out/c.dat")
-make("d.R", prereq=c("out/a.dat", "out/b.dat", "out/c.dat"), target="out/d.dat")
-make("e.R", prereq=c("out/a.dat", "out/c.dat", "out/d.dat"), target="out/e.dat")
+make("d.R", prereq=c("out/b.dat", "out/c.dat"), target="out/d.dat")
+make("e.R", prereq="out/d.dat", target="out/e.dat")
 ```
 
 For convenience, a `_make.R` file is provided, containing these `make()` calls.
