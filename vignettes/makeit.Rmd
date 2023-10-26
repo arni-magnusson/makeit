@@ -8,18 +8,24 @@ output:
     toc_depth: 2
     number_sections: true
 vignette: >
-  %\VignetteIndexEntry{Tutorial}
+  %\VignetteIndexEntry{Getting started with the `makeit` package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(collapse=TRUE, comment="#>")
-library(makeit)
-file.copy(system.file("examples", package="makeit"), ".", recursive=TRUE)
 ```
 
-<br><br>
+```{css, echo=FALSE}
+h1 {font-size:4ex; margin-top:3ex}
+h2 {margin-top:3ex}
+p {margin-top:2ex}
+pre {margin-bottom:3ex; margin-top:2ex}
+div.sourceCode {margin-bottom:3ex}
+img {margin-bottom:1ex; margin-top:1ex}
+// div#TOC {font-size:32px}
+```
 
 # Overview
 
@@ -33,18 +39,56 @@ The general idea is to run a workflow without repeating tasks that are already
 completed. A workflow consists of one or more R scripts, where each script
 generates output files.
 
-<br><br>
-
 # Tutorials
+
+We start by copying the examples to the current directory:
+
+```{r, results="hide"}
+library(makeit)
+unlink("examples", recursive=TRUE)
+file.copy(system.file("examples", package="makeit"), ".", recursive=TRUE)
+```
 
 ## analysis
 
-```
-analysis.R
-input.dat
+This example consists of a script `analysis.R` that uses `input.dat` to produce
+`output.dat`.
+
+Before the workflow is run, we have two files:
+
+```{r, echo=FALSE, comment=""}
+cat(dir("examples/analysis"), sep="\n")
 ```
 
-Simple example, where `analysis.R` uses `input.dat` to produce `output.dat`.
+Run example:
+
+```{r}
+setwd("examples/analysis")
+dir()
+make("analysis.R", "input.dat", "output.dat")
+dir()
+```
+
+Try running again:
+
+```{r}
+knitr::opts_knit$set(root.dir="examples/analysis")
+getwd()
+dir()
+```
+
+
+ dir()
+ make("analysis.R", "input.dat", "output.dat")  # Running analysis.R
+ dir()
+ make("analysis.R", "input.dat", "output.dat")  # Nothing to be done
+
+ # Suppress message, show last modified
+ make("analysis.R", "input.dat", "output.dat", quiet=TRUE)
+ make("analysis.R", "input.dat", "output.dat", details=TRUE)
+
+
+
 
 Run example:
 
@@ -54,8 +98,6 @@ make("analysis.R", "input.dat", "output.dat")
 
 Note how a `make()` call has the general form: script *x* uses *y* to produce
 *z*.
-
-<br>
 
 ## sequential
 
@@ -81,8 +123,6 @@ make("03_tables.R", "results.dat", c("tables/A.csv", "tables/B.csv"))
 
 For convenience, a `_make.R` file is provided, containing these `make()` calls.
 
-<br>
-
 ## four_minutes
 
 ```
@@ -105,8 +145,6 @@ make("plot_model.R", c("data/data.csv", "output/coefs.dat"), "output/plot.pdf")
 ```
 
 For convenience, a `_make.R` file is provided, containing these `make()` calls.
-
-<br>
 
 ## dag_wikipedia
 
@@ -138,8 +176,6 @@ make("e.R", prereq="out/d.dat", target="out/e.dat")
 ```
 
 For convenience, a `_make.R` file is provided, containing these `make()` calls.
-
-<br>
 
 ## dag_targets
 
@@ -173,8 +209,6 @@ make("second_target.R",
 ```
 
 For convenience, a `_make.R` file is provided, containing these `make()` calls.
-
-<br><br>
 
 # Comparison with other make-like packages
 
@@ -210,7 +244,5 @@ Package   | Paradigm  | State  | Dependencies | Time to learn | Run existing wor
 --------- | --------- | ------ | ------------ | ------------- | ---------------------- | --------
 `makeit`  | Scripts   | Files  | None         | Very short    | Must be file-based     | One
 `targets` | Functions | Memory | Many         | Some          | Must be function-based | Many
-
-<br><br>
 
 # References
