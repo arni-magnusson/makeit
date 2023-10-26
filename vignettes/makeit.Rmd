@@ -21,13 +21,14 @@ file.copy(system.file("examples", package="makeit"), ".", recursive=TRUE)
 ```
 
 ```{css, echo=FALSE}
-code {font-size:90%}
+
 div.sourceCode {margin-bottom:3ex}
-h1 {font-size:4ex; margin-top:3ex}
+h1 {font-size:3ex; margin-top:3ex}
 h2 {margin-top:2ex}
 img {margin-bottom:1ex; margin-top:1ex}
 p {margin-top:2ex}
 pre {margin-bottom:3ex; margin-top:2ex}
+table {margin-bottom:3ex}
 ```
 
 # Overview
@@ -159,9 +160,11 @@ cat(files, sep="\n")
 knitr::opts_knit$set(root.dir="examples/dag_wikipedia")
 ```
 
-<img src="https://raw.githubusercontent.com/arni-magnusson/makeit/main/inst/examples/dag_wikipedia.png" alt="diagram" width="120">
+<img
+src="https://raw.githubusercontent.com/arni-magnusson/makeit/main/inst/examples/dag_wikipedia.png"
+alt="diagram" width="120">
 
-DAG example based on the diagram provided in the Wikipedia article on [Directed
+DAG example based on the diagram provided in the Wikipedia article on [directed
 acyclic
 graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph#Mathematical_properties).
 
@@ -202,7 +205,9 @@ cat(files, sep="\n")
 knitr::opts_knit$set(root.dir="examples/dag_targets")
 ```
 
-<img src="https://raw.githubusercontent.com/arni-magnusson/makeit/main/inst/examples/dag_targets.png" alt="diagram" width="400">
+<img
+src="https://raw.githubusercontent.com/arni-magnusson/makeit/main/inst/examples/dag_targets.png"
+alt="diagram" width="400">
 
 DAG example based on the example from the `targets` [user
 manual](https://books.ropensci.org/targets/targets.html#dependencies).
@@ -229,39 +234,91 @@ make("second_target.R",
 
 For convenience, a `_make.R` file is provided, containing these `make()` calls.
 
-# Comparison with other make-like packages
+# Discussion
 
-The `four_minutes` and `dag_targets` examples provide an interesting comparison
-between the `makeit` package and the `targets` package.
+## Use cases
 
-- The `makeit` package is script-based, where each step passes the results to
-  the next step as output files. The user organizes their workflow by writing
-  scripts that produce files.
+The `make()` function is a tool that can be applied to many types of workflows,
+consisting of one or many R scripts. It is especially useful when the complete
+workflow takes many minutes or hours to run. Changing one part of the analysis
+will then update the related plots and tables, without rerunning every part of
+the analysis.
 
-  The `makeit` package relies only on base R and takes a very short time to
-  learn, and can be used to run any existing workflows, as long as they are
-  based on scripts with input and output files. The scripts may include
-  functions, but that is not a requirement.
+The paradigm of using small dedicated scripts with clear input and output files
+(found at the beginning and end of the script) is usually a better workflow
+design than managing a large monolithic script where the user navigates between
+sections to run selected blocks of code.
 
-  The package consists of a single function that does one thing: run an R script
-  if underlying files have changed, otherwise do nothing.
+## Comparison with other packages
 
-- The `targets` package is function-based, where each step passes the results to
-  the next step as objects in memory. The user organizes their workflow by
-  writing functions that produce objects.
+The `four_minutes` and `dag_targets` examples above provide an interesting
+comparison between the `makeit` package and the `targets` package, for example.
 
-  The `targets` package relies on many underlying packages, takes some time to
-  learn, and some work may be required to realign existing workflows into
-  functions. The functions may produce files, but that is not a requirement.
+**makeit**
 
-  The package consists of many useful tools to support workflow design and
-  management.
+The `makeit` package is script-based, where each step passes the results to the
+next step as output files. The user organizes their workflow by writing scripts
+that produce files.
 
-To summarize:
+The `makeit` package relies only on base R and takes a very short time to learn,
+and can be used to run any existing workflows, as long as they are based on
+scripts with input and output files. The scripts may include functions, but that
+is not a requirement.
 
-Package   | Paradigm  | State  | Dependencies | Time to learn | Run existing workflow  | Features
---------- | --------- | ------ | ------------ | ------------- | ---------------------- | --------
-`makeit`  | Scripts   | Files  | None         | Very short    | Must be file-based     | One
-`targets` | Functions | Memory | Many         | Some          | Must be function-based | Many
+The package consists of a single function that does one thing: run an R script
+if underlying files have changed, otherwise do nothing.
+
+**TAF**
+
+The `TAF` package contains a similar `make()` function and is an ancestor of the
+`makeit` package. The overall aim of `TAF` is to support and strengthen
+reproducibility in science, as well as reviewability.
+
+The `TAF` package provides a structured modular design that divides a workflow
+into four main stages: `data.R`, `model.R`, `output.R`, and `report.R`. The
+initial data are declared in a `DATA.bib` file and an optional `SOFTWARE.bib`
+file can be used to declare specific versions of R packages and other software.
+
+The package consists of many useful tools to support reproducible workflows for
+scientific analyses.
+
+**targets**
+
+The `targets` package is function-based, where each step passes the results to
+the next step as objects in memory. The user organizes their workflow by writing
+functions that produce objects. It is the successor of the older `drake`
+package.
+
+The `targets` package relies on many underlying packages, takes some time to
+learn, and some work may be required to realign existing workflows into
+functions. The functions may produce files, but that is not a requirement.
+
+The package consists of many useful tools to support workflow design and
+management.
+
+**Comparison**
+
+Package   | Paradigm  | State  | Package dependencies | Time to learn | Run existing workflow  | Features
+--------- | --------- | ------ | ------------         | ------------- | ---------------------- | --------
+`makeit`  | Scripts   | Files  | None                 | Very short    | Must be file-based     | One
+`TAF`     | Scripts   | Files  | None                 | Some          | Must be file-based     | Many
+`targets` | Functions | Memory | Many                 | Some          | Must be function-based | Many
+
+The CRAN task view for [reproducible
+research](https://cran.r-project.org/view=ReproducibleResearch) provides an
+annotated list of packages related to [pipeline
+toolkits](https://cran.r-project.org/web/views/ReproducibleResearch.html#pipeline-toolkits)
+and [project
+workflows](https://cran.r-project.org/web/views/ReproducibleResearch.html#project-workflows).
 
 # References
+
+Magnusson, A. makeit: Run R Scripts if Needed.
+https://cran.r-project.org/package=makeit.
+
+Magnusson, A. and C. Millar. TAF: Transparent Assessment Framework for
+Reproducible Research. https://cran.r-project.org/package=TAF.
+
+Landau, W.M. 2021. The targets R package: a dynamic Make-like function-oriented
+pipeline toolkit for reproducibility and high-performance computing. Journal of
+Open Source Software, 6(57), 2959. https://doi.org/10.21105/joss.02959.
