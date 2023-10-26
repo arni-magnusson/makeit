@@ -15,16 +15,19 @@ vignette: >
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(collapse=TRUE, comment="#>")
+library(makeit)
+unlink("examples", recursive=TRUE)
+file.copy(system.file("examples", package="makeit"), ".", recursive=TRUE)
 ```
 
 ```{css, echo=FALSE}
+code {font-size:90%}
+div.sourceCode {margin-bottom:3ex}
 h1 {font-size:4ex; margin-top:3ex}
-h2 {margin-top:3ex}
+h2 {margin-top:2ex}
+img {margin-bottom:1ex; margin-top:1ex}
 p {margin-top:2ex}
 pre {margin-bottom:3ex; margin-top:2ex}
-div.sourceCode {margin-bottom:3ex}
-img {margin-bottom:1ex; margin-top:1ex}
-// div#TOC {font-size:32px}
 ```
 
 # Overview
@@ -41,81 +44,62 @@ generates output files.
 
 # Tutorials
 
-We start by copying the examples to the current directory:
-
-```{r, results="hide"}
-library(makeit)
-unlink("examples", recursive=TRUE)
-file.copy(system.file("examples", package="makeit"), ".", recursive=TRUE)
-```
-
 ## analysis
+
+```{r, include=FALSE}
+knitr::opts_knit$set(root.dir="examples/analysis")
+```
 
 This example consists of a script `analysis.R` that uses `input.dat` to produce
 `output.dat`.
 
-Before the workflow is run, we have two files:
+**Before**
 
 ```{r, echo=FALSE, comment=""}
-cat(dir("examples/analysis"), sep="\n")
+cat(dir(), sep="\n")
 ```
 
-Run example:
+**Run**
 
 ```{r}
-setwd("examples/analysis")
-dir()
 make("analysis.R", "input.dat", "output.dat")
-dir()
 ```
 
 Try running again:
 
 ```{r}
-knitr::opts_knit$set(root.dir="examples/analysis")
-getwd()
-dir()
-```
-
-
- dir()
- make("analysis.R", "input.dat", "output.dat")  # Running analysis.R
- dir()
- make("analysis.R", "input.dat", "output.dat")  # Nothing to be done
-
- # Suppress message, show last modified
- make("analysis.R", "input.dat", "output.dat", quiet=TRUE)
- make("analysis.R", "input.dat", "output.dat", details=TRUE)
-
-
-
-
-Run example:
-
-```
 make("analysis.R", "input.dat", "output.dat")
 ```
 
 Note how a `make()` call has the general form: script *x* uses *y* to produce
 *z*.
 
+**After**
+
+```{r, echo=FALSE, comment=""}
+cat(dir(), sep="\n")
+```
+
 ## sequential
 
-```
-01_model.R
-02_plots.R
-03_tables.R
-data.dat
+```{r, include=FALSE}
+knitr::opts_knit$set(root.dir="examples/sequential")
 ```
 
-Three scripts, where one runs after the other.
+This example consists of three scripts, where one runs after the other.
 
-The plot script produces files inside a `plots` folder and the tables script
+The plot script produces files inside a `plots` folder and the table script
 produces files inside a `tables` folder.
 
-Run example:
+**Before**
 
+```{r, echo=FALSE, comment=""}
+cat(dir()[dir() != "_make.R"], sep="\n")
 ```
+
+**Run**
+
+```{r}
 make("01_model.R", "data.dat", "results.dat")
 make("02_plots.R", "results.dat", c("plots/A.png", "plots/B.png"))
 make("03_tables.R", "results.dat", c("tables/A.csv", "tables/B.csv"))
@@ -123,22 +107,35 @@ make("03_tables.R", "results.dat", c("tables/A.csv", "tables/B.csv"))
 
 For convenience, a `_make.R` file is provided, containing these `make()` calls.
 
+**After**
+
+```{r, echo=FALSE, comment=""}
+files <- dir(recursive=TRUE)
+files <- files[files != "_make.R"]
+files <- c(grep("/", files, value=TRUE),
+           grep("/", files, value=TRUE, invert=TRUE))
+cat(files, sep="\n")
+```
+
 ## four_minutes
 
-```
-data_raw.csv
-fit_model.R
-get_data.R
-plot_model.R
+```{r, include=FALSE}
+knitr::opts_knit$set(root.dir="examples/four_minutes")
 ```
 
 Similar to the 'sequential' example above, but based on the
 [four-minutes](https://github.com/wlandau/targets-four-minutes) tutorial that
 comes with `targets` package.
 
-Run example:
+**Before**
 
+```{r, echo=FALSE, comment=""}
+cat(dir()[dir() != "_make.R"], sep="\n")
 ```
+
+**Run**
+
+```{r}
 make("get_data.R", "data_raw.csv", "data/data.csv")
 make("fit_model.R", "data/data.csv", "output/coefs.dat")
 make("plot_model.R", c("data/data.csv", "output/coefs.dat"), "output/plot.pdf")
@@ -146,17 +143,23 @@ make("plot_model.R", c("data/data.csv", "output/coefs.dat"), "output/plot.pdf")
 
 For convenience, a `_make.R` file is provided, containing these `make()` calls.
 
+**After**
+
+```{r, echo=FALSE, comment=""}
+files <- dir(recursive=TRUE)
+files <- files[files != "_make.R"]
+files <- c(grep("/", files, value=TRUE),
+           grep("/", files, value=TRUE, invert=TRUE))
+cat(files, sep="\n")
+```
+
 ## dag_wikipedia
 
-<img src="https://raw.githubusercontent.com/arni-magnusson/makeit/main/inst/examples/dag_wikipedia.png" alt="diagram" width="120">
+```{r, include=FALSE}
+knitr::opts_knit$set(root.dir="examples/dag_wikipedia")
+```
 
-```
-a.R
-b.R
-c.R
-d.R
-e.R
-```
+<img src="https://raw.githubusercontent.com/arni-magnusson/makeit/main/inst/examples/dag_wikipedia.png" alt="diagram" width="120">
 
 DAG example based on the diagram provided in the Wikipedia article on [Directed
 acyclic
@@ -165,9 +168,15 @@ graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph#Mathematical_propert
 Each script produces a corresponding output file: `a.R` produces `out/a.dat`,
 `b.R` produces `out/b.dat`, etc.
 
-Run example:
+**Before**
 
+```{r, echo=FALSE, comment=""}
+cat(dir()[dir() != "_make.R"], sep="\n")
 ```
+
+**Run**
+
+```{r}
 make("a.R", prereq=NULL, target="out/a.dat")
 make("b.R", prereq="out/a.dat", target="out/b.dat")
 make("c.R", prereq="out/a.dat", target="out/c.dat")
@@ -177,17 +186,23 @@ make("e.R", prereq="out/d.dat", target="out/e.dat")
 
 For convenience, a `_make.R` file is provided, containing these `make()` calls.
 
+**After**
+
+```{r, echo=FALSE, comment=""}
+files <- dir(recursive=TRUE)
+files <- files[files != "_make.R"]
+files <- c(grep("/", files, value=TRUE),
+           grep("/", files, value=TRUE, invert=TRUE))
+cat(files, sep="\n")
+```
+
 ## dag_targets
 
-<img src="https://raw.githubusercontent.com/arni-magnusson/makeit/main/inst/examples/dag_targets.png" alt="diagram" width="400">
+```{r, include=FALSE}
+knitr::opts_knit$set(root.dir="examples/dag_targets")
+```
 
-```
-first_target.R
-global_object.R
-inner_function.R
-outer_function.R
-second_target.R
-```
+<img src="https://raw.githubusercontent.com/arni-magnusson/makeit/main/inst/examples/dag_targets.png" alt="diagram" width="400">
 
 DAG example based on the example from the `targets` [user
 manual](https://books.ropensci.org/targets/targets.html#dependencies).
@@ -195,17 +210,21 @@ manual](https://books.ropensci.org/targets/targets.html#dependencies).
 The `second_target` depends on `first_target` and `outer_function`, which in
 turn depends on `inner_function` and `global_object`.
 
-Run example:
+**Before**
 
+```{r, echo=FALSE, comment=""}
+cat(dir()[dir() != "_make.R"], sep="\n")
 ```
-make("first_target.R", NULL, "out/first_target.dat")
-make("global_object.R", NULL, "out/global_object.dat")
-source("inner_function.R")
-source("outer_function.R")
+
+**Run**
+
+```{r}
+make("first_target.R", NULL, "output/first_target.dat")
+make("global_object.R", NULL, "output/global_object.dat")
 make("second_target.R",
-     prereq=c("out/first_target.dat", "out/global_object.dat",
+     prereq=c("output/first_target.dat", "output/global_object.dat",
               "inner_function.R", "outer_function.R"),
-     target="out/second_target.dat")
+     target="output/second_target.dat")
 ```
 
 For convenience, a `_make.R` file is provided, containing these `make()` calls.
