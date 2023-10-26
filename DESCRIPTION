@@ -3,7 +3,7 @@ Version: 1.0.1
 Date: 2023-10-26
 Title: Run R Scripts if Needed
 Authors@R: c(person("Arni", "Magnusson", role=c("aut","cre"), email="thisisarni@gmail.com"))
-Suggests: knitr, rmarkdown
+Suggests: dplyr, ggplot2, knitr, readr, rmarkdown
 Description: Automation tool to run R scripts if needed, based on last modified
   time. Implemented in base R with no additional software requirements,
   organizational overhead, or structural requirements. In short: run an R script
