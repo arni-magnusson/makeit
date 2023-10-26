@@ -3,9 +3,9 @@
 #' Run an R script if underlying files have changed, otherwise do nothing.
 #'
 #' @param recipe script filename.
-#' @param prereq one or more underlying files, required by the script. For
-#'        example, data files, scripts, or \code{NULL}.
-#' @param target one or more output files, produced by the script. Directory
+#' @param prereq one or more files required by the script. For example, data
+#'        files, scripts, or \code{NULL}.
+#' @param target one or more output files produced by the script. Directory
 #'        names can also be used.
 #' @param include whether to automatically include the script itself as a
 #'        prerequisite file. This means that if the script file has been
@@ -15,7 +15,7 @@
 #' @param force whether to run the R script unconditionally.
 #' @param recon whether to return \code{TRUE} or \code{FALSE}, without actually
 #'        running the R script.
-#' @param silent whether to suppress messages.
+#' @param quiet whether to suppress messages.
 #' @param \dots passed to \code{source}.
 #'
 #' @return \code{TRUE} or \code{FALSE}, indicating whether the script was run.
@@ -57,7 +57,7 @@
 #' make("analysis.R", "input.dat", "output.dat")  # Nothing to be done
 #'
 #' # Suppress message, show last modified
-#' make("analysis.R", "input.dat", "output.dat", silent=TRUE)
+#' make("analysis.R", "input.dat", "output.dat", quiet=TRUE)
 #' make("analysis.R", "input.dat", "output.dat", details=TRUE)
 #'
 #' # Sequential scripts
@@ -81,22 +81,36 @@
 #' @export
 
 make <- function(recipe, prereq, target, include=TRUE, details=FALSE,
-                 force=FALSE, recon=FALSE, silent=FALSE, ...)
+                 force=FALSE, recon=FALSE, quiet=FALSE, ...)
 {
+  # Validate recipe
+  if(length(recipe) != 1 || !is.character(recipe) || !file.exists(recipe))
+    stop("'recipe' must be an existing script filename")
+
+  # Validate prereq
   if(include)
     prereq <- union(prereq, recipe)
+  if(is.null(prereq))
+    stop("'prereq' must not be NULL, unless include=TRUE")
+  if(!all(file.exists(prereq)))
+    stop("missing prerequisite file '", prereq[!file.exists(prereq)][1], "'")
+
+  # Validate target
+  if(!is.character(target) || any(nchar(target)) == 0)
+    stop("'target' must be one or more valid filenames")
+
   if(details)
     print(data.frame(Object=c(rep("target",length(target)),
                               rep("prereq",length(prereq))),
                      File=c(target,prereq),
                      Modified=file.mtime(c(target,prereq))))
-  if(!all(file.exists(prereq)))
-    stop("missing prerequisite file '", prereq[!file.exists(prereq)][1], "'")
+
   if(force ||
      !all(file.exists(target)) ||
      min(file.mtime(target)) < max(file.mtime(prereq)))
+    # oldest output is older than newest input
   {
-    if(!silent)
+    if(!quiet)
       message("Running ", recipe)
     if(!recon)
       source(recipe, ...)
@@ -104,9 +118,10 @@ make <- function(recipe, prereq, target, include=TRUE, details=FALSE,
   }
   else
   {
-    if(!silent)
+    if(!quiet)
       message("Nothing to be done")
     out <- FALSE
   }
+
   invisible(out)
 }
