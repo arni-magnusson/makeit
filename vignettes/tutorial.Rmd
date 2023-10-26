@@ -19,15 +19,13 @@ R scripts if needed, based on the last modified time. It is implemented in base
 R with no additional software requirements, organizational overhead, or
 structural requirements.
 
-The general idea is to run a workflow without repeating tasks that were already
-completed. The workflow consists of one or more scripts, where each script
+The general idea is to run a workflow without repeating tasks that are already
+completed. A workflow consists of one or more R scripts, where each script
 generates file.
 
 This tutorial consists of five annotated examples, demonstrating how the make()
 function is used to run an R script if underlying files have changed, otherwise
 do nothing.
-
-
 
 A typical application
 For example, updating tables and plots without rerunning
