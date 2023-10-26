@@ -1,6 +1,12 @@
 ---
-title: "Tutorial"
-output: rmarkdown::html_vignette
+title: "Getting started with the `makeit` package"
+author: "Arni Magnusson"
+date: "`r format(Sys.Date(), '%d %b %Y')`"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
+    number_sections: true
 vignette: >
   %\VignetteIndexEntry{Tutorial}
   %\VignetteEngine{knitr::rmarkdown}
@@ -13,6 +19,10 @@ library(makeit)
 file.copy(system.file("examples", package="makeit"), ".", recursive=TRUE)
 ```
 
+<br><br>
+
+# Overview
+
 The [makeit](https://cran.r-project.org/package=makeit) package provides a
 simple [make](https://en.wikipedia.org/wiki/Make_(software))-like utility to run
 R scripts if needed, based on the last modified time. It is implemented in base
@@ -21,18 +31,13 @@ structural requirements.
 
 The general idea is to run a workflow without repeating tasks that are already
 completed. A workflow consists of one or more R scripts, where each script
-generates file.
+generates output files.
 
-This tutorial consists of five annotated examples, demonstrating how the make()
-function is used to run an R script if underlying files have changed, otherwise
-do nothing.
+<br><br>
 
-A typical application
-For example, updating tables and plots without rerunning
+# Tutorials
 
-
-
-## 1. analysis
+## analysis
 
 ```
 analysis.R
@@ -50,7 +55,9 @@ make("analysis.R", "input.dat", "output.dat")
 Note how a `make()` call has the general form: script *x* uses *y* to produce
 *z*.
 
-## 2. sequential
+<br>
+
+## sequential
 
 ```
 01_model.R
@@ -74,7 +81,9 @@ make("03_tables.R", "results.dat", c("tables/A.csv", "tables/B.csv"))
 
 For convenience, a `_make.R` file is provided, containing these `make()` calls.
 
-## 3. four_minutes
+<br>
+
+## four_minutes
 
 ```
 data_raw.csv
@@ -97,7 +106,9 @@ make("plot_model.R", c("data/data.csv", "output/coefs.dat"), "output/plot.pdf")
 
 For convenience, a `_make.R` file is provided, containing these `make()` calls.
 
-## 4. dag_wikipedia
+<br>
+
+## dag_wikipedia
 
 <img src="https://raw.githubusercontent.com/arni-magnusson/makeit/main/inst/examples/dag_wikipedia.png" alt="diagram" width="120">
 
@@ -128,7 +139,9 @@ make("e.R", prereq="out/d.dat", target="out/e.dat")
 
 For convenience, a `_make.R` file is provided, containing these `make()` calls.
 
-## 5. dag_targets
+<br>
+
+## dag_targets
 
 <img src="https://raw.githubusercontent.com/arni-magnusson/makeit/main/inst/examples/dag_targets.png" alt="diagram" width="400">
 
@@ -161,7 +174,9 @@ make("second_target.R",
 
 For convenience, a `_make.R` file is provided, containing these `make()` calls.
 
-## Comparison with other make-like packages
+<br><br>
+
+# Comparison with other make-like packages
 
 The `four_minutes` and `dag_targets` examples provide an interesting comparison
 between the `makeit` package and the `targets` package.
@@ -195,3 +210,7 @@ Package   | Paradigm  | State  | Dependencies | Time to learn | Run existing wor
 --------- | --------- | ------ | ------------ | ------------- | ---------------------- | --------
 `makeit`  | Scripts   | Files  | None         | Very short    | Must be file-based     | One
 `targets` | Functions | Memory | Many         | Some          | Must be function-based | Many
+
+<br><br>
+
+# References
