@@ -321,3 +321,6 @@ Reproducible Research. https://cran.r-project.org/package=TAF.
 Landau, W.M. 2021. The targets R package: a dynamic Make-like function-oriented
 pipeline toolkit for reproducibility and high-performance computing. Journal of
 Open Source Software, 6(57), 2959. https://doi.org/10.21105/joss.02959.
+
+Stallman, R.M. *et al.* An introduction to makefiles. Chapter 2 in the [GNU Make
+manual](https://www.gnu.org/software/make/manual/).
