@@ -21,7 +21,6 @@ file.copy(system.file("examples", package="makeit"), ".", recursive=TRUE)
 ```
 
 ```{css, echo=FALSE}
-
 div.sourceCode {margin-bottom:3ex}
 h1 {font-size:3ex; margin-top:3ex}
 h2 {margin-top:2ex}
