@@ -237,6 +237,16 @@ make("second_target.R",
 
 For convenience, a `_make.R` file is provided, containing these `make()` calls.
 
+**After**
+
+```{r, echo=FALSE, comment=""}
+files <- dir(recursive=TRUE)
+files <- files[files != "_make.R"]
+files <- c(grep("/", files, value=TRUE),
+           grep("/", files, value=TRUE, invert=TRUE))
+cat(files, sep="\n")
+```
+
 # Discussion
 
 ## Use cases
@@ -257,7 +267,7 @@ In practice, it is usually practical to divide a workflow into more steps than
 that, the first step being data preparation, such as importing, filtering,
 aggregating, and converting the data to the format that the model expects.
 
-If the model is non-trivial, it is often practical to have an output.R step
+If the model is non-trivial, it can be practical to have an output.R step
 righter after model.R, extracting the results from the model-specific format to
 a more general format that is easy to browse, tabulate, and plot. This way, the
 model.R script can be very short, making it easy to see and understand the
