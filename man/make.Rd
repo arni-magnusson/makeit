@@ -56,7 +56,7 @@ file.copy(system.file("examples/sequential", package="makeit"),
           exdir, recursive=TRUE)
 owd <- getwd()
 
-# Here, analysis.R uses input.dat, creating output.dat
+# This analysis uses input.dat to produce output.dat
 setwd(file.path(exdir, "analysis"))
 dir()
 make("analysis.R", "input.dat", "output.dat")  # Running analysis.R
@@ -79,8 +79,7 @@ print.simple.list(dir(recursive=TRUE))
 unlink(file.path(exdir, c("analysis", "sequential")), recursive=TRUE)
 setwd(owd)
 
-# Online annotated examples
-# https://github.com/arni-magnusson/makeit/tree/main/inst/examples#readme
+# See vignette("makeit") for more examples and discussion
 }
 
 }
@@ -91,6 +90,8 @@ Chapter 2 in the \emph{\href{https://www.gnu.org/software/make/manual/}{GNU
 Make manual}}.
 }
 \seealso{
+See \code{vignette("makeit")} for annotated examples and discussion.
+
 \code{\link{file.exists}} and \code{\link{file.mtime}} are the underlying
 functions used to check if files are missing or have changed.
 
