@@ -44,6 +44,10 @@ generates output files.
 
 # Tutorials
 
+The following tutorials come with the package and can be copied from
+`library/makeit/examples` to a working directory, or downloaded from
+[GitHub](https://github.com/arni-magnusson/makeit/tree/main/inst/examples).
+
 ## analysis
 
 ```{r, include=FALSE}
@@ -243,10 +247,28 @@ workflow takes many minutes or hours to run. Changing one part of the analysis
 will then update the related plots and tables, without rerunning every part of
 the analysis.
 
+## Your project
+
+Most analyses resemble the `sequential` example above, dividing the workflow
+into steps that run one after another. As an introductory example, the
+`sequential` workflow consists of only three steps: model, plots, and tables.
+
+In practice, it is usually practical to divide a workflow into more steps than
+that, the first step being data preparation, such as importing, filtering,
+aggregating, and converting the data to the format that the model expects.
+
+If the model is non-trivial, it is often practical to have an output.R step
+righter after model.R, extracting the results from the model-specific format to
+a more general format that is easy to browse, tabulate, and plot. This way, the
+model.R script can be very short, making it easy to see and understand the
+modelling approach and configuration. Separating the fundamental modelling step
+from the manual labor of data preparation and plotting can make an analysis more
+open and reproducible - for others to browse and reuse.
+
 The paradigm of using small dedicated scripts with clear input and output files
-(found at the beginning and end of the script) is usually a better workflow
-design than managing a large monolithic script where the user navigates between
-sections to run selected blocks of code.
+(read and write function calls near the beginning and end of each script) is
+usually a better workflow design than managing a large monolithic script where
+the user navigates between sections to run selected blocks of code.
 
 ## Comparison with other packages
 
@@ -312,15 +334,18 @@ workflows](https://cran.r-project.org/web/views/ReproducibleResearch.html#projec
 
 # References
 
-Magnusson, A. makeit: Run R Scripts if Needed.
-https://cran.r-project.org/package=makeit.
+Magnusson, A. makeit: Run R Scripts if Needed.\
+https://cran.r-project.org/package=makeit
 
 Magnusson, A. and C. Millar. TAF: Transparent Assessment Framework for
-Reproducible Research. https://cran.r-project.org/package=TAF.
+Reproducible Research.\
+https://cran.r-project.org/package=TAF
 
 Landau, W.M. 2021. The targets R package: a dynamic Make-like function-oriented
-pipeline toolkit for reproducibility and high-performance computing. Journal of
-Open Source Software, 6(57), 2959. https://doi.org/10.21105/joss.02959.
+pipeline toolkit for reproducibility and high-performance computing. *Journal of
+Open Source Software*, 6(57), 2959.\
+https://doi.org/10.21105/joss.02959, https://cran.r-project.org/package=targets
 
-Stallman, R.M. *et al.* An introduction to makefiles. Chapter 2 in the [GNU Make
-manual](https://www.gnu.org/software/make/manual/).
+Stallman, R.M. *et al.* An introduction to makefiles. Chapter 2 in the *GNU Make
+manual*.\
+https://www.gnu.org/software/make/manual/
