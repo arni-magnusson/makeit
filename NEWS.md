@@ -1,11 +1,12 @@
-# makeit 1.0.1 (2023-10-26)
+# makeit 1.0.1 (2023-10-27)
 
 * Renamed argument 'silent' to 'quiet' in make().
 
 * Improved error messages when make() is called using invalid 'recipe',
   'prereq', or 'target'.
 
-* Added a tutorial vignette, see.
+* Added a tutorial vignette with annotated examples and discussion, see
+  vignette("makeit").
 
 
 

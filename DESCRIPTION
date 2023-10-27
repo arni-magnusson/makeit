@@ -1,6 +1,6 @@
 Package: makeit
 Version: 1.0.1
-Date: 2023-10-26
+Date: 2023-10-27
 Title: Run R Scripts if Needed
 Authors@R: c(person("Arni", "Magnusson", role=c("aut","cre"), email="thisisarni@gmail.com"))
 Suggests: dplyr, ggplot2, knitr, readr, rmarkdown
