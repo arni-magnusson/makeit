@@ -1,4 +1,4 @@
 a <- scan("out/a.dat", quiet=TRUE)
 
-cat("Writing out/b.dat\n")
+message("Writing out/b.dat")
 write(a + utf8ToInt("b"), "out/b.dat")
