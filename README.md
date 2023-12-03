@@ -34,6 +34,10 @@ library(makeit)
 ?make
 ```
 
+See the [package
+vignette](https://cran.r-project.org/web/packages/makeit/vignettes/makeit.html)
+for annotated examples and discussion.
+
 Development
 -----------
 
