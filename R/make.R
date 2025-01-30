@@ -18,6 +18,10 @@
 #' @param quiet whether to suppress messages.
 #' @param \dots passed to \code{source}.
 #'
+#' @details
+#' A \code{make()} call has the general form: script \emph{x} uses \emph{y} to
+#' produce \emph{z}.
+#'
 #' @return \code{TRUE} or \code{FALSE}, indicating whether the script was run.
 #'
 #' @note

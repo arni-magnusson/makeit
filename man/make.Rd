@@ -39,6 +39,10 @@ running the R script.}
 \description{
 Run an R script if underlying files have changed, otherwise do nothing.
 }
+\details{
+A \code{make()} call has the general form: script \emph{x} uses \emph{y} to
+produce \emph{z}.
+}
 \note{
 This function provides functionality similar to makefile rules, to determine
 whether a script should be (re)run or not.
