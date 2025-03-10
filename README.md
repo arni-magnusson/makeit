@@ -7,8 +7,8 @@ makeit
 
 Automation tool to run R scripts if needed, based on last modified time.
 
-Implemented in base R with no additional software requirements, organizational
-overhead, or structural requirements.
+It comes with no package dependencies, organizational overhead, or structural
+requirements.
 
 In short: run an R script if underlying files have changed, otherwise do
 nothing.

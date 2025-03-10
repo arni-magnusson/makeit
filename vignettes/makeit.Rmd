@@ -34,9 +34,8 @@ table {margin-bottom:3ex}
 
 The [makeit](https://cran.r-project.org/package=makeit) package provides a
 simple [make](https://en.wikipedia.org/wiki/Make_(software))-like utility to run
-R scripts if needed, based on the last modified time. It is implemented in base
-R with no additional software requirements, organizational overhead, or
-structural requirements.
+R scripts if needed, based on the last modified time. It comes with no package
+dependencies, organizational overhead, or structural requirements.
 
 The general idea is to run a workflow without repeating tasks that are already
 completed. A workflow consists of one or more R scripts, where each script
@@ -291,10 +290,10 @@ The `makeit` package is script-based, where each step passes the results to the
 next step as output files. The user organizes their workflow by writing scripts
 that produce files.
 
-The `makeit` package relies only on base R and takes a very short time to learn,
-and can be used to run any existing workflows, as long as they are based on
-scripts with input and output files. The scripts may include functions, but that
-is not a requirement.
+The `makeit` package has no package dependencies, takes a very short time to
+learn, and can be used to run any existing workflows, as long as they are based
+on scripts with input and output files. The scripts may include functions, but
+that is not a requirement.
 
 The package consists of a single function that does one thing: run an R script
 if underlying files have changed, otherwise do nothing.
@@ -330,7 +329,7 @@ management.
 **Comparison**
 
 Package   | Paradigm  | State  | Package dependencies | Time to learn | Run existing workflow  | Features
---------- | --------- | ------ | ------------         | ------------- | ---------------------- | --------
+--------- | --------- | ------ | -------------------- | ------------- | ---------------------- | --------
 `makeit`  | Scripts   | Files  | None                 | Very short    | Must be file-based     | One
 `TAF`     | Scripts   | Files  | None                 | Some          | Must be file-based     | Many
 `targets` | Functions | Memory | Many                 | Some          | Must be function-based | Many
