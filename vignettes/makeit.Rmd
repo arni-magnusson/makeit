@@ -6,7 +6,6 @@ output:
   rmarkdown::html_vignette:
     toc: true
     toc_depth: 2
-    number_sections: true
 vignette: >
   %\VignetteIndexEntry{Getting started with the `makeit` package}
   %\VignetteEngine{knitr::rmarkdown}
