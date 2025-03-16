@@ -40,8 +40,13 @@ running the R script.}
 Run an R script if underlying files have changed, otherwise do nothing.
 }
 \details{
-A \code{make()} call has the general form: script \emph{x} uses \emph{y} to
-produce \emph{z}.
+A \code{make()} call has the general form
+\preformatted{
+make("analysis.R", "input.dat", "output.dat")
+}
+which can be read aloud as:
+
+\dQuote{script \emph{x} uses \emph{y} to produce \emph{z}}
 }
 \note{
 This function provides functionality similar to makefile rules, to determine
