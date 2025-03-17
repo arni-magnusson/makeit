@@ -1,3 +1,10 @@
+# makeit 1.0.2 (2025-03-18)
+
+* Improvements in vignette.
+
+
+
+
 # makeit 1.0.1 (2023-10-27)
 
 * Renamed argument 'silent' to 'quiet' in make().
