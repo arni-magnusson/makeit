@@ -129,7 +129,7 @@ make <- function(recipe, prereq, target, include=TRUE, details=FALSE,
   else
   {
     if(!quiet)
-      message("Nothing to be done")
+      message("Nothing to be done (", recipe, ")")
     out <- FALSE
   }
 
