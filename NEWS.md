@@ -1,3 +1,10 @@
+# makeit 1.0.3 (development)
+
+* Improved the message when 'Nothing to be done' to include the script name.
+
+
+
+
 # makeit 1.0.2 (2025-03-18)
 
 * Improvements in vignette.
