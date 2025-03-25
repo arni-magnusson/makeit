@@ -299,9 +299,10 @@ if underlying files have changed, otherwise do nothing.
 
 **TAF**
 
-The `TAF` package contains a similar `make()` function and is an ancestor of the
-`makeit` package. The overall aim of `TAF` is to support and strengthen
-reproducibility in science, as well as reviewability.
+The `TAF` package contains a similar `make()` function as an expert tool, but it
+is not part of the core functionality of the package. The overall aim of `TAF`
+is to support and strengthen reproducibility in science, as well as
+reviewability.
 
 The `TAF` package provides a structured modular design that divides a workflow
 into four main stages: `data.R`, `model.R`, `output.R`, and `report.R`. The
@@ -314,9 +315,8 @@ scientific analyses.
 **targets**
 
 The `targets` package is function-based, where each step passes the results to
-the next step as objects in memory. The user organizes their workflow by writing
-functions that produce objects. It is the successor of the older `drake`
-package.
+the next step as objects. The user organizes their workflow by writing functions
+that produce objects. It is the successor of the older `drake` package.
 
 The `targets` package relies on many underlying packages, takes some time to
 learn, and some work may be required to realign existing workflows into
@@ -327,11 +327,11 @@ management.
 
 **Comparison**
 
-Package   | Paradigm  | State  | Package dependencies | Time to learn | Run existing workflow  | Features
---------- | --------- | ------ | -------------------- | ------------- | ---------------------- | --------
-`makeit`  | Scripts   | Files  | None                 | Very short    | Must be file-based     | One
-`TAF`     | Scripts   | Files  | None                 | Some          | Must be file-based     | Many
-`targets` | Functions | Memory | Many                 | Some          | Must be function-based | Many
+Package   | Paradigm  | State   | Package dependencies | Time to learn | Run existing workflow  | Features
+--------- | --------- | ------- | -------------------- | ------------- | ---------------------- | --------
+`makeit`  | Scripts   | Files   | None                 | Very short    | Must be file-based     | One
+`TAF`     | Scripts   | Files   | None                 | Some          | Must be file-based     | Many
+`targets` | Functions | Objects | Many                 | Some          | Must be function-based | Many
 
 The CRAN task view for [reproducible
 research](https://cran.r-project.org/view=ReproducibleResearch) provides an
