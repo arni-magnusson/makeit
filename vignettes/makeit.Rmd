@@ -40,6 +40,17 @@ The general idea is to run a workflow without repeating tasks that are already
 completed. A workflow consists of one or more R scripts, where each script
 generates output files.
 
+The `makeit` package offers the core functionality of GNU Make. As such, it
+provides the building block to construct a pipeline of arbitrary complexity.
+Similar to writing a Makefile, one can organize `make()` declarations in a
+script called `_make.R` or the like. It is straightforward to transition a
+simple workflow between a GNU Makefile and `makeit` declarations, with only
+minor syntax modifications.
+
+Rather than writing a dedicated `_make.R` file for governing a workflow,
+specific `make()` calls can also be used inside any functions or scripts to
+selectively run computational tasks as needed.
+
 # Tutorials
 
 The following tutorials come with the package and can be copied from
